@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  flask-api:
+    build:
+      context: ./flask-api
+      dockerfile: Dockerfile
+    container_name: flask-api
+    ports: ['5000:5000']
+    environment:
+      FLASK_DEBUG: "on"
+      FLASK_APP: /flask-api/src/app.py
+    volumes: ['./flask-api:/flask-api']
