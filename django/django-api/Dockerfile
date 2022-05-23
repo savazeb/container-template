@@ -1,15 +1,14 @@
 FROM python:3.8.10-slim
 
-WORKDIR /flask-api/
+WORKDIR /django-api/
 
 RUN pip install pipenv
 
-COPY Pipfile Pipfile.lock /flask-api/
+COPY Pipfile Pipfile.lock /django-api/
 
 RUN pipenv install --system --clear
 
-COPY . /flask-api/
+COPY . /django-api/
 
-WORKDIR /flask-api/src
+WORKDIR /django-api/app
 
-CMD ["flask", "run", "-h", "0.0.0.0"]

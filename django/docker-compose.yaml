@@ -1,12 +1,11 @@
 version: '3.8'
 services:
-  flask-api:
+  django-api:
     build:
-      context: ./flask-api
+      context: ./django-api
       dockerfile: Dockerfile
-    container_name: flask-api
-    ports: ['5000:5000']
-    environment:
-      FLASK_DEBUG: "on"
-      FLASK_APP: /flask-api/src/app.py
-    volumes: ['./flask-api:/flask-api']
+    container_name: django-api
+    command: python manage.py runserver 0.0.0.0:80
+    ports:
+      - "80:80"
+    volumes: ['./django-api:/django-api']
