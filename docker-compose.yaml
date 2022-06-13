@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  flask-api:
+    build:
+      context: ./flask/flask-api
+      dockerfile: Dockerfile
+    container_name: flask-api
+    ports: ['5000:5000']
+    environment:
+      FLASK_DEBUG: "on"
+      FLASK_APP: /flask-api/src/app.py
+    volumes: ['./flask/flask-api:/flask-api']
+  
+  react-ui:
+    build:
+      context: ./react/react-ui
+      dockerfile: Dockerfile
+    container_name: react-ui
+    ports:
+      - "3000:3000"
+    environment:
+      - WATCHPACK_POLLING=true
+    stdin_open: true
+    volumes:
+      - /react/app/node_modules
+      - ./react/react-ui:/react-ui
+ 
